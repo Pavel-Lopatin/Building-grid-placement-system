@@ -1,4 +1,4 @@
-namespace BuldingSystem
+namespace BuildingSystem
 {
     public abstract class FsmState
     {

@@ -1302,6 +1302,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buildingPanel: {fileID: 5704031537754125884}
   _buildingStateText: {fileID: 1574076462309732210}
+--- !u!1 &7277756826653395650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2612128347957634625}
+  - component: {fileID: 7120030492392831447}
+  m_Layer: 0
+  m_Name: InputController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2612128347957634625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277756826653395650}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2755263486415982199}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7120030492392831447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277756826653395650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b7c03409d21dc46acf57af2ff7fd8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7479030813408416832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,6 +1425,7 @@ Transform:
   - {fileID: 2276150835547382330}
   - {fileID: 6167135546600089400}
   - {fileID: 816206417983446531}
+  - {fileID: 2612128347957634625}
   - {fileID: 5727659189911674334}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1400,6 +1445,7 @@ MonoBehaviour:
   _buildingPlacer: {fileID: 8357698926450093308}
   _buildingPreview: {fileID: 8937844289580036333}
   _guiController: {fileID: 5670902024849361628}
+  _inputController: {fileID: 7120030492392831447}
 --- !u!1 &8767883554874376306
 GameObject:
   m_ObjectHideFlags: 0

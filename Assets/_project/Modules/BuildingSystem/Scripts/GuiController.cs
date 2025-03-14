@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BuldingSystem
+namespace BuildingSystem
 {
     public class GuiController : MonoBehaviour
     {

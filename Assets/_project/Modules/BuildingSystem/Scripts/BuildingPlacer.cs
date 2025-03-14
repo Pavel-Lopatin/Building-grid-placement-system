@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BuldingSystem
+namespace BuildingSystem
 {
     public class BuildingPlacer : MonoBehaviour
     {

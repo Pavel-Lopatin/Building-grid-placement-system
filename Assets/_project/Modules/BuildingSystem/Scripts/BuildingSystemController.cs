@@ -1,6 +1,7 @@
+using BuildingSystem;
 using UnityEngine;
 
-namespace BuldingSystem
+namespace BuildingSystem
 {
     public class BuildingSystemController : MonoBehaviour
     {
@@ -11,6 +12,7 @@ namespace BuldingSystem
         [SerializeField] private BuildingPlacer _buildingPlacer;
         [SerializeField] private BuildingPreview _buildingPreview;
         [SerializeField] private GuiController _guiController;
+        [SerializeField] private InputController _inputController;
 
         private Fsm _fsm;
 
@@ -25,6 +27,7 @@ namespace BuldingSystem
             _buildingPlacer.Init();
             _buildingPreview.Init();
             _guiController.Init();
+            _inputController.Init();
         }
 
         private void InitializeStates()
@@ -37,6 +40,11 @@ namespace BuldingSystem
             _fsm.SetState<IdleState>();
 
             Debug.Log($"State machine for {name} initialized");
+        }
+
+        private void Update()
+        {
+            _fsm.Update();
         }
     }
 }

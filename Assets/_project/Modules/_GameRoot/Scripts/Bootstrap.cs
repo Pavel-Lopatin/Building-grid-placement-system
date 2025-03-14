@@ -1,5 +1,5 @@
 using UnityEngine;
-using BuldingSystem;
+using BuildingSystem;
 
 namespace GameRoot
 {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BuldingSystem
+namespace BuildingSystem
 {
     public class BuildingPreview : MonoBehaviour
     {
