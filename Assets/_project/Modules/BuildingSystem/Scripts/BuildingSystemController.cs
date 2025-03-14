@@ -30,9 +30,11 @@ namespace BuldingSystem
         private void InitializeStates()
         {
             _fsm = new Fsm();
-            _fsm.AddState(new IdleState(_fsm));
-            _fsm.AddState(new ConstructionState(_fsm));
-            _fsm.AddState(new DelectionState(_fsm));
+            _fsm.AddState(new IdleState(_fsm, _buildingPlacer, _buildingPreview, _guiController));
+            _fsm.AddState(new ConstructionState(_fsm, _buildingPlacer, _buildingPreview, _guiController));
+            _fsm.AddState(new DelectionState(_fsm, _buildingPlacer, _buildingPreview, _guiController));
+
+            _fsm.SetState<IdleState>();
 
             Debug.Log($"State machine for {name} initialized");
         }

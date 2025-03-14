@@ -2,8 +2,13 @@ namespace BuldingSystem
 {
     public class ConstructionState : FsmState
     {
-        public ConstructionState(Fsm fsm) : base(fsm)
+        public ConstructionState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController) : base(fsm, buildingPlacer, buildingPreview, guiController)
         {
+        }
+
+        public override void Enter()
+        {
+            _guiController.UpdateStateText("Режим строиельства");
         }
     }
 }

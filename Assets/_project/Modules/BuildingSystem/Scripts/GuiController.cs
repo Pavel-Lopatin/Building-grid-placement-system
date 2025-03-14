@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace BuldingSystem
 {
     public class GuiController : MonoBehaviour
     {
         [SerializeField] private GameObject _buildingPanel;
+        [SerializeField] private Text _buildingStateText;
 
         public void Init()
         {
@@ -17,10 +19,14 @@ namespace BuldingSystem
             _buildingPanel.SetActive(true);
         }
 
-        private void Hide()
+        public void Hide()
         {
             _buildingPanel.SetActive(false);
         }
-    }
 
+        public void UpdateStateText(string newText)
+        {
+            _buildingStateText.text = newText;
+        }
+    }
 }
