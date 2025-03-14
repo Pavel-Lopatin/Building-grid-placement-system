@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,10 @@ namespace BuildingSystem
     {
         [SerializeField] private GameObject _buildingPanel;
         [SerializeField] private Text _buildingStateText;
+
+        public event Action OnBuildButtonClicked;
+        public event Action OnDeleteButtonClicked;
+        public event Action<int> OnBuldingSelectionButtonClicked;
 
         public void Init()
         {
@@ -28,5 +33,21 @@ namespace BuildingSystem
         {
             _buildingStateText.text = newText;
         }
+
+        public void BuildButtonClicked()
+        {
+            OnBuildButtonClicked?.Invoke();
+        }
+
+        public void DeleteButtonClicked()
+        {
+            OnDeleteButtonClicked?.Invoke();
+        }
+
+        public void BuldingSelectionButtonClicked(int id)
+        {
+            OnBuldingSelectionButtonClicked?.Invoke(id);
+        }
+
     }
 }

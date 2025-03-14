@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewBuildingBase", menuName = "Scriptable Objects/BuildingBase")]
-public class BuildingBase : ScriptableObject
+public class BuildingDataBase : ScriptableObject
 {
     public BuildingData[] buildings;
 }

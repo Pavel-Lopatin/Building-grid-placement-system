@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace BuildingSystem
 {
     public abstract class FsmState
@@ -6,13 +8,22 @@ namespace BuildingSystem
         protected readonly BuildingPlacer _buildingPlacer;
         protected readonly BuildingPreview _buildingPreview;
         protected readonly GuiController _guiController;
+        protected readonly InputController _inputController;
+        protected readonly Grid _grid;
 
-        public FsmState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController)
+        protected readonly BuildingDataBase _buildingsDataBase;
+
+        protected int _lastBuildingID;
+
+        public FsmState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, BuildingDataBase buildingDataBase, Grid grid)
         {
             _fsm = fsm;
             _buildingPlacer = buildingPlacer;
             _buildingPreview = buildingPreview;
             _guiController = guiController;
+            _inputController = inputController;
+            _buildingsDataBase = buildingDataBase;
+            _grid = grid;
         }
 
         public virtual void Enter() { }

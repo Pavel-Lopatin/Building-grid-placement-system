@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using System;
 
 namespace BuildingSystem
 {
@@ -7,29 +9,28 @@ namespace BuildingSystem
     {
         private BuldingSystemControls _inputActions;
 
+        public event Action OnLeftMouseButtonClicked;
+        public event Action OnEscapeButtonClicked;
+
         public void Init()
         {
             _inputActions = new BuldingSystemControls();
             _inputActions.Enable();
-            ActivateEvents();
+
+            EnableInputEvents();
         }
 
-        public void ActivateEvents()
+        public void EnableInputEvents()
         {
-            _inputActions.BuildingMap.LeftMousePress.performed += OnLeftMouseClicked;
-            _inputActions.BuildingMap.EscapeButtonPress.performed += OnEscapeClicked;
+            _inputActions.BuildingMap.LeftMousePress.performed += LeftMouseButtonClicked;
+            _inputActions.BuildingMap.EscapeButtonPress.performed += EscapeButtonClicked;
         }
 
-        public void OnLeftMouseClicked(InputAction.CallbackContext context)
-        {
-            Debug.Log("Left mouse clicked");
-        }
+        public bool IsCursorOverUI() => EventSystem.current.IsPointerOverGameObject();
 
-        public void OnEscapeClicked(InputAction.CallbackContext context)
-        {
-            Debug.Log("Escape button clicked");
-        }
-
+        public void LeftMouseButtonClicked(InputAction.CallbackContext context) => OnLeftMouseButtonClicked?.Invoke();
+        public void EscapeButtonClicked(InputAction.CallbackContext context) => OnEscapeButtonClicked?.Invoke();
+       
         public Vector2 ReadMousePosition()
         {
             Vector2 mousePosition = _inputActions.BuildingMap.CursorPosition.ReadValue<Vector2>();
@@ -38,8 +39,8 @@ namespace BuildingSystem
 
         private void OnDisable()
         {
-            _inputActions.BuildingMap.LeftMousePress.performed -= OnLeftMouseClicked;
-            _inputActions.BuildingMap.EscapeButtonPress.performed -= OnEscapeClicked;
+            _inputActions.BuildingMap.LeftMousePress.performed -= LeftMouseButtonClicked;
+            _inputActions.BuildingMap.EscapeButtonPress.performed -= EscapeButtonClicked;
         }
     }
 }

@@ -245,7 +245,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8761753317689931511}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5670902024849361628}
+        m_TargetAssemblyTypeName: BuildingSystem.GuiController, BuildingSystem
+        m_MethodName: DeleteButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2384221191233597779
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +459,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1403763094484041055}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5670902024849361628}
+        m_TargetAssemblyTypeName: BuildingSystem.GuiController, BuildingSystem
+        m_MethodName: BuildButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2614944728213449618
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +752,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6254113882919947109}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5670902024849361628}
+        m_TargetAssemblyTypeName: BuildingSystem.GuiController, BuildingSystem
+        m_MethodName: BuldingSelectionButtonClicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3929838871880648983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,7 +1169,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1773547996153796908}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5670902024849361628}
+        m_TargetAssemblyTypeName: BuildingSystem.GuiController, BuildingSystem
+        m_MethodName: BuldingSelectionButtonClicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6348782287261376582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,7 +1302,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1348479922349213019}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5670902024849361628}
+        m_TargetAssemblyTypeName: BuildingSystem.GuiController, BuildingSystem
+        m_MethodName: BuldingSelectionButtonClicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6414046548169822300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,6 +1372,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2612128347957634625}
   - component: {fileID: 7120030492392831447}
+  - component: {fileID: 7169281372502784508}
+  - component: {fileID: 1710730446569008524}
   m_Layer: 0
   m_Name: InputController
   m_TagString: Untagged
@@ -1346,6 +1408,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b7c03409d21dc46acf57af2ff7fd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7169281372502784508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277756826653395650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &1710730446569008524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277756826653395650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &7479030813408416832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,11 +1548,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b8fa6fccd476e44bf60c786975016e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingBase: {fileID: 11400000, guid: 0ffecfc23eef8e149a45de0b89daea2d, type: 2}
+  _buildingsDataBase: {fileID: 11400000, guid: 0ffecfc23eef8e149a45de0b89daea2d, type: 2}
+  _buildingLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   _buildingPlacer: {fileID: 8357698926450093308}
   _buildingPreview: {fileID: 8937844289580036333}
   _guiController: {fileID: 5670902024849361628}
   _inputController: {fileID: 7120030492392831447}
+  _grid: {fileID: 3280276165933489690}
 --- !u!1 &8767883554874376306
 GameObject:
   m_ObjectHideFlags: 0

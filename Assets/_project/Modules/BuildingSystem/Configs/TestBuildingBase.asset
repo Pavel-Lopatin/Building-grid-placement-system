@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 482d1712d0dc2504d9e57dba6ef15218, type: 3}
+  m_Script: {fileID: 11500000, guid: 775d17041855e294c81e90b74843d4c7, type: 3}
   m_Name: TestBuildingBase
   m_EditorClassIdentifier: 
   buildings:

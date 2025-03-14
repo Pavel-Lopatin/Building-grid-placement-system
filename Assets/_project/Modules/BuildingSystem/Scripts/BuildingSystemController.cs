@@ -1,4 +1,3 @@
-using BuildingSystem;
 using UnityEngine;
 
 namespace BuildingSystem
@@ -6,18 +5,24 @@ namespace BuildingSystem
     public class BuildingSystemController : MonoBehaviour
     {
         [Tooltip("Data")]
-        [SerializeField] private BuildingBase _buildingBase;
+        [SerializeField] private BuildingDataBase _buildingsDataBase;
+        [SerializeField] private LayerMask _buildingLayerMask;
 
         [Tooltip("Services")]
         [SerializeField] private BuildingPlacer _buildingPlacer;
         [SerializeField] private BuildingPreview _buildingPreview;
         [SerializeField] private GuiController _guiController;
         [SerializeField] private InputController _inputController;
+        [SerializeField] private Grid _grid;
 
+        [Tooltip("Components")]
+        Camera _camera;
         private Fsm _fsm;
 
         public void Init()
         {
+            _camera = Camera.main;
+
             InitializeServices();
             InitializeStates();
         }
@@ -25,7 +30,7 @@ namespace BuildingSystem
         private void InitializeServices()
         {
             _buildingPlacer.Init();
-            _buildingPreview.Init();
+            _buildingPreview.Init(_camera, _buildingLayerMask);
             _guiController.Init();
             _inputController.Init();
         }
@@ -33,9 +38,9 @@ namespace BuildingSystem
         private void InitializeStates()
         {
             _fsm = new Fsm();
-            _fsm.AddState(new IdleState(_fsm, _buildingPlacer, _buildingPreview, _guiController));
-            _fsm.AddState(new ConstructionState(_fsm, _buildingPlacer, _buildingPreview, _guiController));
-            _fsm.AddState(new DelectionState(_fsm, _buildingPlacer, _buildingPreview, _guiController));
+            _fsm.AddState(new IdleState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _buildingsDataBase, _grid));
+            _fsm.AddState(new ConstructionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _buildingsDataBase, _grid));
+            _fsm.AddState(new DelectionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _buildingsDataBase, _grid));
 
             _fsm.SetState<IdleState>();
 
