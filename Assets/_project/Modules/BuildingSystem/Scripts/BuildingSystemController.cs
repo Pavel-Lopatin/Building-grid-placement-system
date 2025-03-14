@@ -8,6 +8,7 @@ namespace BuldingSystem
         [SerializeField] private BuildingBase _buildingBase;
 
         [Tooltip("Services")]
+        [SerializeField] private BuildingPlacer _buildingPlacer;
         [SerializeField] private BuildingPreview _buildingPreview;
         [SerializeField] private GuiController _guiController;
 
@@ -15,8 +16,15 @@ namespace BuldingSystem
 
         public void Init()
         {
-            InitializeStates();
             InitializeServices();
+            InitializeStates();
+        }
+
+        private void InitializeServices()
+        {
+            _buildingPlacer.Init();
+            _buildingPreview.Init();
+            _guiController.Init();
         }
 
         private void InitializeStates()
@@ -27,12 +35,6 @@ namespace BuldingSystem
             _fsm.AddState(new DelectionState(_fsm));
 
             Debug.Log($"State machine for {name} initialized");
-        }
-
-        private void InitializeServices()
-        {
-            _buildingPreview.Init();
-            _guiController.Init();
         }
     }
 }
