@@ -5,7 +5,7 @@ namespace GameRoot
 {
     public class Bootstrap : MonoBehaviour
     {
-        [SerializeField] private BuildingSystemController _buildingSystemController;
+        private BuildingSystemController _buildingSystemController;
 
         private void Awake()
         {
