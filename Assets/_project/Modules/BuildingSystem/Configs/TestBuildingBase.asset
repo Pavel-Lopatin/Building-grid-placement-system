@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482d1712d0dc2504d9e57dba6ef15218, type: 3}
+  m_Name: TestBuildingBase
+  m_EditorClassIdentifier: 
+  buildings:
+  - <Name>k__BackingField: Red block
+    <ID>k__BackingField: 0
+    <Prefab>k__BackingField: {fileID: 4585611410763211237, guid: b9abfa3a600b99e4a9b8cf3e12d2e7d2, type: 3}
+  - <Name>k__BackingField: Blue block
+    <ID>k__BackingField: 1
+    <Prefab>k__BackingField: {fileID: 2158251775246092783, guid: 03b5fe2922ea54c439cd7a6ae834d252, type: 3}
+  - <Name>k__BackingField: Grey block
+    <ID>k__BackingField: 2
+    <Prefab>k__BackingField: {fileID: 3112787412538942716, guid: 926c3dddadc1b404db840a6a7febd576, type: 3}
