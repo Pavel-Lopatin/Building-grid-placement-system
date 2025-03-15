@@ -2,7 +2,8 @@
     "name": "GameRoot",
     "rootNamespace": "",
     "references": [
-        "GUID:e613c1a274115204ebc17309344f05d8"
+        "GUID:e613c1a274115204ebc17309344f05d8",
+        "GUID:b0363d39604d0af45b054c7b7aa8e476"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

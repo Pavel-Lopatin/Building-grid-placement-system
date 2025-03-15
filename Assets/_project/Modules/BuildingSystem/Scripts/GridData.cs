@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BuildingSystem
@@ -7,29 +9,33 @@ namespace BuildingSystem
     {
         private Dictionary<Vector3Int, PlacementData> _placedObjects = new Dictionary<Vector3Int, PlacementData>();
 
-        public void AddObject(Vector3Int gridPosition, int ID, int buildIndex)
+        public PlacementData AddObject(Vector3Int gridPosition, int ID, int buildIndex)
         {
+            Debug.Log(buildIndex);
             PlacementData data = new PlacementData(gridPosition, ID, buildIndex);
             _placedObjects.Add(gridPosition, data);
+
+            return data;
         }
 
         public bool IsContainBuilding(Vector3Int gridPosition)
         {
             if (_placedObjects.ContainsKey(gridPosition))
-                return false;
+                return true;
 
-            return true;
+            return false;
         }
 
         public int Remove(Vector3Int gridPosition)
         {
             int index = _placedObjects[gridPosition].BuildIndex;
+            Debug.Log(index);
             _placedObjects.Remove(gridPosition);
             return index;
         }
     }
 
-    public class PlacementData
+    public struct PlacementData
     {
         public Vector3Int OccupiedPosition { get; private set; }
         public int ID { get; private set; }

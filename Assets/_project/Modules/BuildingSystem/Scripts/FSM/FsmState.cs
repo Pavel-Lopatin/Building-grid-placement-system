@@ -5,6 +5,7 @@ namespace BuildingSystem
     public abstract class FsmState
     {
         protected readonly Fsm _fsm;
+        protected readonly BuildingSystemController _controller;
         protected readonly BuildingPlacer _buildingPlacer;
         protected readonly BuildingPreview _buildingPreview;
         protected readonly GuiController _guiController;
@@ -15,9 +16,12 @@ namespace BuildingSystem
         protected readonly BuildingDataBase _buildingsDataBase;
         protected readonly GridData _gridData;
 
-        public FsmState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData)
+        protected int _lastID;
+
+        public FsmState(Fsm fsm,BuildingSystemController controller, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData)
         {
             _fsm = fsm;
+            _controller = controller;
             _buildingPlacer = buildingPlacer;
             _buildingPreview = buildingPreview;
             _guiController = guiController;

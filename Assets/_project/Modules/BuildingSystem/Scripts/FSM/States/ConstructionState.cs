@@ -6,7 +6,7 @@ namespace BuildingSystem
     {
         private int _id;
 
-        public ConstructionState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, buildingPlacer, buildingPreview, guiController, inputController, grid, positionCalculator, buildingDataBase, gridData)
+        public ConstructionState(Fsm fsm, BuildingSystemController controller, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, controller, buildingPlacer, buildingPreview, guiController, inputController, grid, positionCalculator, buildingDataBase, gridData)
         {
         }
 
@@ -21,6 +21,8 @@ namespace BuildingSystem
             _guiController.OnBuildButtonClicked += BuildButtonClicked;
             _inputController.OnEscapeButtonClicked += TransitionToIdleState;
             _inputController.OnLeftMouseButtonClicked += TryToBuild;
+
+            _id = _lastID;
         }
 
         private void BuildingButtonIdSelected(int id)
@@ -49,11 +51,16 @@ namespace BuildingSystem
             if (_inputController.IsCursorOverUI() || !_buildingPreview.IsReadyToShow())
                 return;
 
-            if (_gridData.IsContainBuilding(CalculatePosition()))
+            if (!_gridData.IsContainBuilding(CalculatePosition()))
             {
-                int buildIndex = _buildingPlacer.PlaceBuilding(_buildingsDataBase.buildings[_id].Prefab, CalculatePosition());
-                _gridData.AddObject(CalculatePosition(), _id, buildIndex);
+                Build();
             }
+        }
+
+        private void Build()
+        {
+            int buildIndex = _buildingPlacer.PlaceBuilding(_buildingsDataBase.buildings[_id].Prefab, CalculatePosition());
+            _controller.GridDataUpdate(_gridData.AddObject(CalculatePosition(), _id, buildIndex)); 
         }
 
         public override void Update()

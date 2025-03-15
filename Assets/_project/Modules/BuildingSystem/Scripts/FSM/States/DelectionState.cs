@@ -4,7 +4,7 @@ namespace BuildingSystem
 {
     public class DelectionState : FsmState
     {
-        public DelectionState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, buildingPlacer, buildingPreview, guiController, inputController, grid, positionCalculator, buildingDataBase, gridData)
+        public DelectionState(Fsm fsm, BuildingSystemController controller, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, controller, buildingPlacer, buildingPreview, guiController, inputController, grid, positionCalculator, buildingDataBase, gridData)
         {
         }
 
@@ -25,10 +25,13 @@ namespace BuildingSystem
             if (_inputController.IsCursorOverUI())
                 return;
 
-            if (_gridData.IsContainBuilding(CalculatePosition()))
+            if (!_gridData.IsContainBuilding(CalculatePosition()))
                 return;
 
-            _buildingPlacer.DestroyBuilding(_gridData.Remove(CalculatePosition()));
+            int destroyIndex = _gridData.Remove(CalculatePosition());
+
+            _buildingPlacer.DestroyBuilding(destroyIndex);
+            _controller.BuildingRemoved(destroyIndex);
         }
 
         private Vector3Int CalculatePosition()

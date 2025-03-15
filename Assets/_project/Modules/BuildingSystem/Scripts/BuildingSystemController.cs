@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BuildingSystem
@@ -21,12 +23,24 @@ namespace BuildingSystem
         Camera _camera;
         private Fsm _fsm;
 
-        public void Init()
+        public event Action<PlacementData> OnGridDataUpdated;
+        public event Action<int> OnBuildingRemoved;
+
+
+        public void Init(List<PlacementData> loadedData)
         {
             _camera = Camera.main;
 
             InitializeServices();
             InitializeStates();
+
+            if (loadedData != null)
+            {
+                foreach (var data in loadedData)
+                {
+                    Build(data.OccupiedPosition, data.ID, data.BuildIndex);
+                }
+            }
         }
 
         private void InitializeServices()
@@ -43,9 +57,9 @@ namespace BuildingSystem
         private void InitializeStates()
         {
             _fsm = new Fsm();
-            _fsm.AddState(new IdleState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase,  _gridData));
-            _fsm.AddState(new ConstructionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
-            _fsm.AddState(new DelectionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
+            _fsm.AddState(new IdleState(_fsm, this, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
+            _fsm.AddState(new ConstructionState(_fsm, this, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
+            _fsm.AddState(new DelectionState(_fsm, this, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
 
             _fsm.SetState<IdleState>();
 
@@ -55,6 +69,22 @@ namespace BuildingSystem
         private void Update()
         {
             _fsm.Update();
+        }
+
+        public void GridDataUpdate(PlacementData newData)
+        {
+            OnGridDataUpdated?.Invoke(newData);
+        }
+
+        public void BuildingRemoved(int index)
+        {
+            OnBuildingRemoved?.Invoke(index);
+        }
+
+        private void Build(Vector3Int position, int id, int buildIndex)
+        {
+            _buildingPlacer.PlaceBuildingFromSave(_buildingsDataBase.buildings[id].Prefab, position);
+            _gridData.AddObject(position, id, buildIndex);
         }
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace BuildingSystem
@@ -21,6 +20,13 @@ namespace BuildingSystem
 
             int index = _placedGameObjects.LastIndexOf(newBuilding);
             return index;
+        }
+
+        public void PlaceBuildingFromSave(GameObject prefab, Vector3Int position)
+        {
+            var newBuilding = Instantiate(prefab, position, Quaternion.identity);
+            _placedGameObjects.Add(newBuilding);
+            Debug.Log("The building is built from save!");
         }
 
         public void DestroyBuilding(int buildingIndex)

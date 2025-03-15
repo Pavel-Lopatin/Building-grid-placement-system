@@ -4,7 +4,7 @@ namespace BuildingSystem
 {
     public class IdleState : FsmState
     {
-        public IdleState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, buildingPlacer, buildingPreview, guiController, inputController, grid, positionCalculator, buildingDataBase, gridData)
+        public IdleState(Fsm fsm, BuildingSystemController controller, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, controller, buildingPlacer, buildingPreview, guiController, inputController, grid, positionCalculator, buildingDataBase, gridData)
         {
         }
 
@@ -20,7 +20,8 @@ namespace BuildingSystem
 
         private void BuildingSelected(int id)
         {
-            _buildingPreview.PrepareBuildingPrefab(_buildingsDataBase.buildings[id].Prefab);
+            _lastID = id;
+            _buildingPreview.PrepareBuildingPrefab(_buildingsDataBase.buildings[_lastID].Prefab);
             _fsm.SetState<ConstructionState>();
         }
 
