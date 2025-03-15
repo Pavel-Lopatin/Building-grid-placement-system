@@ -15,7 +15,6 @@ namespace BuildingSystem
             _guiController.SetActiveToBuildingsButtons(false);
             _guiController.UpdateStateText("Demolition mode. ESC to quit");
             _guiController.OnDeleteButtonClicked += TransitionToIdleState;
-            _guiController.OnBuildButtonClicked += TransitionToIdleState;
             _inputController.OnEscapeButtonClicked += TransitionToIdleState;
             _inputController.OnLeftMouseButtonClicked += TryToDestroy;
         }

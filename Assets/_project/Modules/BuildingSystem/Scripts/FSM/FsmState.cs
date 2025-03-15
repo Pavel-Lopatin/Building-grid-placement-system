@@ -16,7 +16,7 @@ namespace BuildingSystem
         protected readonly BuildingDataBase _buildingsDataBase;
         protected readonly GridData _gridData;
 
-        protected int _lastID;
+        private protected int _lastID;
 
         public FsmState(Fsm fsm,BuildingSystemController controller, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData)
         {

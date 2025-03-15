@@ -8,6 +8,7 @@ namespace BuildingSystem
 
         public ConstructionState(Fsm fsm, BuildingSystemController controller, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, controller, buildingPlacer, buildingPreview, guiController, inputController, grid, positionCalculator, buildingDataBase, gridData)
         {
+            _guiController.OnBuldingSelectionButtonClicked += BuildingButtonIdSelected;
         }
 
         public override void Enter()
@@ -17,7 +18,6 @@ namespace BuildingSystem
             _guiController.UpdateStateText("Press BUILD button");
             _guiController.SetActiveToBuildButton(true);
             _guiController.OnDeleteButtonClicked += TransitionToDelectionState;
-            _guiController.OnBuldingSelectionButtonClicked += BuildingButtonIdSelected;
             _guiController.OnBuildButtonClicked += BuildButtonClicked;
             _inputController.OnEscapeButtonClicked += TransitionToIdleState;
             _inputController.OnLeftMouseButtonClicked += TryToBuild;
@@ -91,7 +91,6 @@ namespace BuildingSystem
         {
             _buildingPreview.ClearPreview();
 
-            _guiController.OnBuldingSelectionButtonClicked -= BuildingButtonIdSelected;
             _guiController.OnDeleteButtonClicked -= TransitionToDelectionState;
             _guiController.OnBuildButtonClicked -= BuildButtonClicked;
             _inputController.OnEscapeButtonClicked -= TransitionToIdleState;
@@ -99,5 +98,7 @@ namespace BuildingSystem
 
             Debug.Log($"{GetType().Name} COMPLETED");
         }
+
+        
     }
 }

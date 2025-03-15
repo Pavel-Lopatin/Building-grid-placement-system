@@ -6,6 +6,7 @@ namespace BuildingSystem
     {
         public IdleState(Fsm fsm, BuildingSystemController controller, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, controller, buildingPlacer, buildingPreview, guiController, inputController, grid, positionCalculator, buildingDataBase, gridData)
         {
+            _guiController.OnBuldingSelectionButtonClicked += BuildingSelected;
         }
 
         public override void Enter()
@@ -14,7 +15,6 @@ namespace BuildingSystem
 
             _guiController.UpdateStateText("Select building");
             _guiController.SetActiveToBuildButton(false);
-            _guiController.OnBuldingSelectionButtonClicked += BuildingSelected;
             _guiController.OnDeleteButtonClicked += TransitionToDeletionState;
         }
 
@@ -32,7 +32,6 @@ namespace BuildingSystem
 
         public override void Exit()
         {
-            _guiController.OnBuldingSelectionButtonClicked -= BuildingSelected;
             _guiController.OnDeleteButtonClicked -= TransitionToDeletionState;
             Debug.Log($"{GetType().Name} COMPLETED");
         }
