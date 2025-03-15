@@ -13,14 +13,13 @@ namespace BuildingSystem
             Debug.Log($"{GetType().Name} ENTERED");
 
             _guiController.UpdateStateText("Select a building to build");
-            _guiController.OnBuldingSelectionButtonClicked += OnBuildingSelected;
+            _guiController.OnBuldingSelectionButtonClicked += BuildingSelected;
             _guiController.OnDeleteButtonClicked += TransitionToDeletionState;
         }
 
-        private void OnBuildingSelected(int id)
+        private void BuildingSelected(int id)
         {
-            Debug.Log($"{id}");
-            _lastBuildingID = id;
+            _buildingPreview.PrepareBuildingPrefab(_buildingsDataBase.buildings[id].Prefab);
             _fsm.SetState<ConstructionState>();
         }
 
@@ -31,7 +30,7 @@ namespace BuildingSystem
 
         public override void Exit()
         {
-            _guiController.OnBuldingSelectionButtonClicked -= OnBuildingSelected;
+            _guiController.OnBuldingSelectionButtonClicked -= BuildingSelected;
             _guiController.OnDeleteButtonClicked -= TransitionToDeletionState;
             Debug.Log($"{GetType().Name} COMPLETED");
         }

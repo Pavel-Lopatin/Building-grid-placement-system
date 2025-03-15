@@ -14,20 +14,39 @@ namespace BuildingSystem
 
             _guiController.UpdateStateText("Press BUILD button");
             _guiController.OnDeleteButtonClicked += TransitionToDelectionState;
+            _guiController.OnBuldingSelectionButtonClicked += BuildingButtonIdSelected;
+            _guiController.OnBuildButtonClicked += BuildButtonClicked;
             _inputController.OnEscapeButtonClicked += ForcedTransitionToIdleState;
+        }
 
-            ShowBuildingPreview();
+        private void BuildingButtonIdSelected(int id)
+        {
+            _guiController.UpdateStateText("Press BUILD button");
+            _buildingPreview.PrepareBuildingPrefab(_buildingsDataBase.buildings[id].Prefab);
+        }
+
+        private void BuildButtonClicked()
+        {
+            if (_buildingPreview.IsReadyToShow())
+            {
+                ShowBuildingPreview();
+                _guiController.UpdateStateText("Select a construction PLACE");
+            }
         }
 
         private void ShowBuildingPreview()
         {
-            
-            _buildingPreview.Show(_buildingsDataBase.buildings[_lastBuildingID].Prefab, _grid.WorldToCell(_buildingPreview.CalculatePositionOnPlane(_inputController.ReadMousePosition())));
+            Vector3Int position = _grid.WorldToCell(_buildingPreview.CalculatePositionOnPlane(_inputController.ReadMousePosition()));
+            _buildingPreview.Show(position);
         }
 
         public override void Update()
         {
-            _buildingPreview.UpdatePosition(_grid.WorldToCell(_buildingPreview.CalculatePositionOnPlane(_inputController.ReadMousePosition())));
+            if (_inputController.IsCursorOverUI() || !_buildingPreview.IsReadyToShow())
+                return;
+
+            Vector3Int position = _grid.WorldToCell(_buildingPreview.CalculatePositionOnPlane(_inputController.ReadMousePosition()));
+            _buildingPreview.UpdatePosition(position);
         }
 
         private void TransitionToDelectionState()
@@ -44,7 +63,9 @@ namespace BuildingSystem
         {
             _buildingPreview.Hide();
 
+            _guiController.OnBuldingSelectionButtonClicked -= BuildingButtonIdSelected;
             _guiController.OnDeleteButtonClicked -= TransitionToDelectionState;
+            _guiController.OnBuildButtonClicked -= BuildButtonClicked;
             _inputController.OnEscapeButtonClicked -= ForcedTransitionToIdleState;
 
             Debug.Log($"{GetType().Name} COMPLETED");
