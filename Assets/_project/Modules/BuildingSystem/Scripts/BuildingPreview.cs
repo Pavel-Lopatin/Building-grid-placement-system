@@ -21,7 +21,7 @@ namespace BuildingSystem
 
         public void PrepareBuildingPrefab(GameObject prefab)
         {
-            Hide();
+            ClearPreview();
 
             _currentBuildingPrefab = Instantiate(prefab);
             _currentBuildingPrefab.SetActive(false);
@@ -65,12 +65,14 @@ namespace BuildingSystem
             _currentPreviewObject.transform.position = position + _offsetPosition;
         }
 
-        public void Hide()
+        public void ClearPreview()
         {
-            Destroy(_currentBuildingPrefab.gameObject);
-            _currentBuildingPrefab = null;
-            _currentPreviewObject = null;
+            if (_currentBuildingPrefab)
+            {
+                Destroy(_currentBuildingPrefab.gameObject);
+                _currentBuildingPrefab = null;
+                _currentPreviewObject = null;
+            }
         }
     }
 }
-

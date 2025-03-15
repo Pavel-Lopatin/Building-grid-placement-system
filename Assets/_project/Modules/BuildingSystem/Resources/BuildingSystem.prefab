@@ -1406,6 +1406,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buildingPanel: {fileID: 5704031537754125884}
   _buildingStateText: {fileID: 1574076462309732210}
+  _buildingsButtons:
+  - {fileID: 3704646358341291228}
+  - {fileID: 5926741769231869470}
+  - {fileID: 6348782287261376582}
+  - {fileID: 2551737372191066542}
+  _buildButton: {fileID: 2551737372191066542}
 --- !u!1 &7277756826653395650
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,8 @@ namespace BuildingSystem
         {
             Debug.Log($"{GetType().Name} ENTERED");
 
-            _guiController.UpdateStateText("Select a building to build");
+            _guiController.UpdateStateText("Select building");
+            _guiController.SetActiveToBuildButton(false);
             _guiController.OnBuldingSelectionButtonClicked += BuildingSelected;
             _guiController.OnDeleteButtonClicked += TransitionToDeletionState;
         }

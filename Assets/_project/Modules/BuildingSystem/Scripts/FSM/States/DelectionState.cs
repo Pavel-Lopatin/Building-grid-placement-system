@@ -12,10 +12,31 @@ namespace BuildingSystem
         {
             Debug.Log($"{GetType().Name} ENTERED");
 
-            _guiController.UpdateStateText("Demolition mode");
+            _guiController.SetActiveToBuildingsButtons(false);
+            _guiController.UpdateStateText("Demolition mode. ESC to quit");
             _guiController.OnDeleteButtonClicked += TransitionToIdleState;
+            _guiController.OnBuildButtonClicked += TransitionToIdleState;
             _inputController.OnEscapeButtonClicked += TransitionToIdleState;
+            _inputController.OnLeftMouseButtonClicked += TryToDestroy;
         }
+
+        private void TryToDestroy()
+        {
+            if (_inputController.IsCursorOverUI())
+                return;
+
+            if (_gridData.IsContainBuilding(CalculatePosition()))
+                return;
+
+            _buildingPlacer.DestroyBuilding(_gridData.Remove(CalculatePosition()));
+        }
+
+        private Vector3Int CalculatePosition()
+        {
+            Vector3Int position = _grid.WorldToCell(_positionCalculator.CalculatePositionOnPlane(_inputController.ReadMousePosition()));
+            return position;
+        }
+
 
         private void TransitionToIdleState()
         {
@@ -24,8 +45,10 @@ namespace BuildingSystem
 
         public override void Exit()
         {
+            _guiController.SetActiveToBuildingsButtons(true);
             _guiController.OnDeleteButtonClicked -= TransitionToIdleState;
             _inputController.OnEscapeButtonClicked -= TransitionToIdleState;
+            _inputController.OnLeftMouseButtonClicked -= TryToDestroy;
 
             Debug.Log($"{GetType().Name} COMPLETED");
         }

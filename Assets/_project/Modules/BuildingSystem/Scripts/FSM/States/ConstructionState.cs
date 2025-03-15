@@ -15,6 +15,7 @@ namespace BuildingSystem
             Debug.Log($"{GetType().Name} ENTERED");
 
             _guiController.UpdateStateText("Press BUILD button");
+            _guiController.SetActiveToBuildButton(true);
             _guiController.OnDeleteButtonClicked += TransitionToDelectionState;
             _guiController.OnBuldingSelectionButtonClicked += BuildingButtonIdSelected;
             _guiController.OnBuildButtonClicked += BuildButtonClicked;
@@ -48,10 +49,10 @@ namespace BuildingSystem
             if (_inputController.IsCursorOverUI() || !_buildingPreview.IsReadyToShow())
                 return;
 
-            if (_gridData.CanPlace(CalculatePosition()))
+            if (_gridData.IsContainBuilding(CalculatePosition()))
             {
-                _buildingPlacer.PlaceBuilding(_buildingsDataBase.buildings[_id].Prefab, CalculatePosition());
-                _gridData.AddObject(CalculatePosition(), _id);
+                int buildIndex = _buildingPlacer.PlaceBuilding(_buildingsDataBase.buildings[_id].Prefab, CalculatePosition());
+                _gridData.AddObject(CalculatePosition(), _id, buildIndex);
             }
         }
 
@@ -81,7 +82,7 @@ namespace BuildingSystem
 
         public override void Exit()
         {
-            _buildingPreview.Hide();
+            _buildingPreview.ClearPreview();
 
             _guiController.OnBuldingSelectionButtonClicked -= BuildingButtonIdSelected;
             _guiController.OnDeleteButtonClicked -= TransitionToDelectionState;
