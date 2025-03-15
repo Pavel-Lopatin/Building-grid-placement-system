@@ -16,7 +16,7 @@ namespace BuildingSystem
         {
             var newBuilding = Instantiate(prefab, position, Quaternion.identity);
             _placedGameObjects.Add(newBuilding);
-            Debug.Log("The building is built!");
+            Debug.Log($"The building {prefab.name} is built!");
 
             int index = _placedGameObjects.LastIndexOf(newBuilding);
             return index;
@@ -26,7 +26,7 @@ namespace BuildingSystem
         {
             var newBuilding = Instantiate(prefab, position, Quaternion.identity);
             _placedGameObjects.Add(newBuilding);
-            Debug.Log("The building is built from save!");
+            Debug.Log($"The building {prefab.name} is built from save!");
         }
 
         public void DestroyBuilding(int buildingIndex)

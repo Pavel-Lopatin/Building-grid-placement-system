@@ -56,5 +56,4 @@ namespace BuildingSystem
             Debug.Log($"{GetType().Name} COMPLETED");
         }
     }
-
 }

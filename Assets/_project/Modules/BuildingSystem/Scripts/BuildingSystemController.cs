@@ -57,13 +57,13 @@ namespace BuildingSystem
         private void InitializeStates()
         {
             _fsm = new Fsm();
+            Debug.Log($"State machine for {name} initialized");
+
             _fsm.AddState(new IdleState(_fsm, this, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
             _fsm.AddState(new ConstructionState(_fsm, this, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
             _fsm.AddState(new DelectionState(_fsm, this, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
 
             _fsm.SetState<IdleState>();
-
-            Debug.Log($"State machine for {name} initialized");
         }
 
         private void Update()

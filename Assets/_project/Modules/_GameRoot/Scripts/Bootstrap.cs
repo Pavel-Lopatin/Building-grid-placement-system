@@ -26,8 +26,6 @@ namespace GameRoot
             _saveSystemContoller = Instantiate(saveSystem);
             Debug.Log($"{_saveSystemContoller.name} added to scene");
 
-            _saveSystemContoller.Load(_saveSystemContoller.FileName);
-
             SubscribeToEvents();
             StartGameplay();
         }

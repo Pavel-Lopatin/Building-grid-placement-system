@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace BuildingSystem
@@ -11,7 +9,6 @@ namespace BuildingSystem
 
         public PlacementData AddObject(Vector3Int gridPosition, int ID, int buildIndex)
         {
-            Debug.Log(buildIndex);
             PlacementData data = new PlacementData(gridPosition, ID, buildIndex);
             _placedObjects.Add(gridPosition, data);
 
