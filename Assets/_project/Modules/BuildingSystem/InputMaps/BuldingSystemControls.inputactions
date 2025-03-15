@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Left Mouse Press",
+                    "name": "LeftMousePress",
                     "type": "Button",
                     "id": "5f53db1b-8a3e-4336-a298-4765a31eb012",
                     "expectedControlType": "Button",
@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Escape Button Press",
+                    "name": "EscapeButtonPress",
                     "type": "Button",
                     "id": "830bd64e-5642-4559-b6fe-ca85226b75f7",
                     "expectedControlType": "Button",
@@ -52,7 +52,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Left Mouse Press",
+                    "action": "LeftMousePress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -63,7 +63,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Escape Button Press",
+                    "action": "EscapeButtonPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

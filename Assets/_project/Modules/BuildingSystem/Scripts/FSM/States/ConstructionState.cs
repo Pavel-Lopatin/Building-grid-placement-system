@@ -4,7 +4,9 @@ namespace BuildingSystem
 {
     public class ConstructionState : FsmState
     {
-        public ConstructionState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, BuildingDataBase buildingDataBase, Grid grid) : base(fsm, buildingPlacer, buildingPreview, guiController, inputController, buildingDataBase, grid)
+        private int _id;
+
+        public ConstructionState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, buildingPlacer, buildingPreview, guiController, inputController, grid, buildingDataBase, gridData)
         {
         }
 
@@ -16,13 +18,15 @@ namespace BuildingSystem
             _guiController.OnDeleteButtonClicked += TransitionToDelectionState;
             _guiController.OnBuldingSelectionButtonClicked += BuildingButtonIdSelected;
             _guiController.OnBuildButtonClicked += BuildButtonClicked;
-            _inputController.OnEscapeButtonClicked += ForcedTransitionToIdleState;
+            _inputController.OnEscapeButtonClicked += TransitionToIdleState;
+            _inputController.OnLeftMouseButtonClicked += TryToBuild;
         }
 
         private void BuildingButtonIdSelected(int id)
         {
+            _id = id;
             _guiController.UpdateStateText("Press BUILD button");
-            _buildingPreview.PrepareBuildingPrefab(_buildingsDataBase.buildings[id].Prefab);
+            _buildingPreview.PrepareBuildingPrefab(_buildingsDataBase.buildings[_id].Prefab);
         }
 
         private void BuildButtonClicked()
@@ -36,8 +40,19 @@ namespace BuildingSystem
 
         private void ShowBuildingPreview()
         {
-            Vector3Int position = _grid.WorldToCell(_buildingPreview.CalculatePositionOnPlane(_inputController.ReadMousePosition()));
-            _buildingPreview.Show(position);
+            _buildingPreview.Show(CalculatePosition());
+        }
+
+        private void TryToBuild()
+        {
+            if (_inputController.IsCursorOverUI() || !_buildingPreview.IsReadyToShow())
+                return;
+
+            if (_gridData.CanPlace(CalculatePosition()))
+            {
+                _buildingPlacer.PlaceBuilding(_buildingsDataBase.buildings[_id].Prefab, CalculatePosition());
+                _gridData.AddObject(CalculatePosition(), _id);
+            }
         }
 
         public override void Update()
@@ -45,8 +60,13 @@ namespace BuildingSystem
             if (_inputController.IsCursorOverUI() || !_buildingPreview.IsReadyToShow())
                 return;
 
+            _buildingPreview.UpdatePosition(CalculatePosition());
+        }
+
+        private Vector3Int CalculatePosition()
+        {
             Vector3Int position = _grid.WorldToCell(_buildingPreview.CalculatePositionOnPlane(_inputController.ReadMousePosition()));
-            _buildingPreview.UpdatePosition(position);
+            return position;
         }
 
         private void TransitionToDelectionState()
@@ -54,7 +74,7 @@ namespace BuildingSystem
             _fsm.SetState<DelectionState>();
         }
 
-        private void ForcedTransitionToIdleState()
+        private void TransitionToIdleState()
         {
             _fsm.SetState<IdleState>();
         }
@@ -66,7 +86,8 @@ namespace BuildingSystem
             _guiController.OnBuldingSelectionButtonClicked -= BuildingButtonIdSelected;
             _guiController.OnDeleteButtonClicked -= TransitionToDelectionState;
             _guiController.OnBuildButtonClicked -= BuildButtonClicked;
-            _inputController.OnEscapeButtonClicked -= ForcedTransitionToIdleState;
+            _inputController.OnEscapeButtonClicked -= TransitionToIdleState;
+            _inputController.OnLeftMouseButtonClicked -= TryToBuild;
 
             Debug.Log($"{GetType().Name} COMPLETED");
         }

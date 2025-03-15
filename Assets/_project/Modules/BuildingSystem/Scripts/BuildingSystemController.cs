@@ -7,6 +7,7 @@ namespace BuildingSystem
         [Tooltip("Data")]
         [SerializeField] private BuildingDataBase _buildingsDataBase;
         [SerializeField] private LayerMask _buildingLayerMask;
+        private GridData _gridData;
 
         [Tooltip("Services")]
         [SerializeField] private BuildingPlacer _buildingPlacer;
@@ -29,6 +30,8 @@ namespace BuildingSystem
 
         private void InitializeServices()
         {
+            _gridData = new GridData();
+
             _buildingPlacer.Init();
             _buildingPreview.Init(_camera, _buildingLayerMask);
             _guiController.Init();
@@ -38,9 +41,9 @@ namespace BuildingSystem
         private void InitializeStates()
         {
             _fsm = new Fsm();
-            _fsm.AddState(new IdleState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _buildingsDataBase, _grid));
-            _fsm.AddState(new ConstructionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _buildingsDataBase, _grid));
-            _fsm.AddState(new DelectionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _buildingsDataBase, _grid));
+            _fsm.AddState(new IdleState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _buildingsDataBase,  _gridData));
+            _fsm.AddState(new ConstructionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _buildingsDataBase, _gridData));
+            _fsm.AddState(new DelectionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _buildingsDataBase, _gridData));
 
             _fsm.SetState<IdleState>();
 
