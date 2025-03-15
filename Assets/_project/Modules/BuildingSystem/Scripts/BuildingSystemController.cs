@@ -15,6 +15,7 @@ namespace BuildingSystem
         [SerializeField] private GuiController _guiController;
         [SerializeField] private InputController _inputController;
         [SerializeField] private Grid _grid;
+        [SerializeField] private PositionCalculator _positionCalculator;
 
         [Tooltip("Components")]
         Camera _camera;
@@ -33,17 +34,18 @@ namespace BuildingSystem
             _gridData = new GridData();
 
             _buildingPlacer.Init();
-            _buildingPreview.Init(_camera, _buildingLayerMask);
+            _buildingPreview.Init();
             _guiController.Init();
             _inputController.Init();
+            _positionCalculator.Init(_camera, _buildingLayerMask);
         }
 
         private void InitializeStates()
         {
             _fsm = new Fsm();
-            _fsm.AddState(new IdleState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _buildingsDataBase,  _gridData));
-            _fsm.AddState(new ConstructionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _buildingsDataBase, _gridData));
-            _fsm.AddState(new DelectionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _buildingsDataBase, _gridData));
+            _fsm.AddState(new IdleState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase,  _gridData));
+            _fsm.AddState(new ConstructionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
+            _fsm.AddState(new DelectionState(_fsm, _buildingPlacer, _buildingPreview, _guiController, _inputController, _grid, _positionCalculator, _buildingsDataBase, _gridData));
 
             _fsm.SetState<IdleState>();
 

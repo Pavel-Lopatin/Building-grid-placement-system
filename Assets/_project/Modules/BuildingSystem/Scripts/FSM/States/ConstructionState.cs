@@ -6,7 +6,7 @@ namespace BuildingSystem
     {
         private int _id;
 
-        public ConstructionState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, buildingPlacer, buildingPreview, guiController, inputController, grid, buildingDataBase, gridData)
+        public ConstructionState(Fsm fsm, BuildingPlacer buildingPlacer, BuildingPreview buildingPreview, GuiController guiController, InputController inputController, Grid grid, PositionCalculator positionCalculator, BuildingDataBase buildingDataBase, GridData gridData) : base(fsm, buildingPlacer, buildingPreview, guiController, inputController, grid, positionCalculator, buildingDataBase, gridData)
         {
         }
 
@@ -65,7 +65,7 @@ namespace BuildingSystem
 
         private Vector3Int CalculatePosition()
         {
-            Vector3Int position = _grid.WorldToCell(_buildingPreview.CalculatePositionOnPlane(_inputController.ReadMousePosition()));
+            Vector3Int position = _grid.WorldToCell(_positionCalculator.CalculatePositionOnPlane(_inputController.ReadMousePosition()));
             return position;
         }
 

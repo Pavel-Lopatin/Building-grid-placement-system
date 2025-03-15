@@ -7,30 +7,16 @@ namespace BuildingSystem
         [SerializeField] private float _offsetY;
         [SerializeField] private GameObject _currentPreviewObject;
         [SerializeField] private GameObject _currentBuildingPrefab;
+        [SerializeField] private Material _previewMaterial;
 
         private Camera _sceneCamera;
         private LayerMask _placementLayerMask;
         private Vector3 _lastPosition;
         private Vector3 _offsetPosition;
 
-        public void Init(Camera camera, LayerMask layerMask)
+        public void Init()
         {
             _offsetPosition = new Vector3(0, _offsetY, 0);
-
-            _sceneCamera = camera;
-            _placementLayerMask = layerMask;
-        }
-
-        public Vector3 CalculatePositionOnPlane(Vector2 mousePosition)
-        {
-            Vector3 newMousePosition = new Vector3(mousePosition.x, mousePosition.y, _sceneCamera.nearClipPlane);
-            Ray ray = _sceneCamera.ScreenPointToRay(newMousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100, _placementLayerMask))
-                _lastPosition = hit.point;
-
-            return _lastPosition;
         }
 
         public void PrepareBuildingPrefab(GameObject prefab)
@@ -52,9 +38,10 @@ namespace BuildingSystem
 
                 for (int m = 0; m < materials.Length; m++)
                 {
-                    Color transparencyColor = new Color(materials[m].color.r, materials[m].color.g, materials[m].color.b, 0.1f);
-                    renderers[i].sharedMaterials[m].color = transparencyColor;
+                    materials[m] = _previewMaterial;
                 }
+
+                renderers[i].sharedMaterial = _previewMaterial;
             }
         }
 

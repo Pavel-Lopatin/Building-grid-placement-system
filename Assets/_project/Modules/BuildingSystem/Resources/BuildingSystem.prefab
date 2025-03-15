@@ -844,6 +844,50 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Build
+--- !u!1 &4041707946027905578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4556364749167452018}
+  - component: {fileID: 5846906173129586381}
+  m_Layer: 0
+  m_Name: PositionCalculator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4556364749167452018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4041707946027905578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2755263486415982199}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5846906173129586381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4041707946027905578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4851faed57c29a4092a00dfd0c66c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4270055757667894522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,6 +1543,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offsetY: 0.2
   _currentPreviewObject: {fileID: 0}
+  _currentBuildingPrefab: {fileID: 0}
+  _previewMaterial: {fileID: 2100000, guid: a18f4eb070a2b8f45acc1921e541c9b6, type: 2}
 --- !u!1 &8493298182178537525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +1580,7 @@ Transform:
   - {fileID: 816206417983446531}
   - {fileID: 2612128347957634625}
   - {fileID: 5727659189911674334}
+  - {fileID: 4556364749167452018}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9023475708513045603
@@ -1557,6 +1604,7 @@ MonoBehaviour:
   _guiController: {fileID: 5670902024849361628}
   _inputController: {fileID: 7120030492392831447}
   _grid: {fileID: 3280276165933489690}
+  _positionCalculator: {fileID: 5846906173129586381}
 --- !u!1 &8767883554874376306
 GameObject:
   m_ObjectHideFlags: 0

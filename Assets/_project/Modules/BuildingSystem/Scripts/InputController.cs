@@ -26,11 +26,17 @@ namespace BuildingSystem
             _inputActions.BuildingMap.EscapeButtonPress.performed += EscapeButtonClicked;
         }
 
-        public bool IsCursorOverUI() => EventSystem.current.IsPointerOverGameObject();
+        public bool IsCursorOverUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject(PointerInputModule.kMouseLeftId))
+                return true;
+            else
+                return false;
+        }
 
         public void LeftMouseButtonClicked(InputAction.CallbackContext context) => OnLeftMouseButtonClicked?.Invoke();
         public void EscapeButtonClicked(InputAction.CallbackContext context) => OnEscapeButtonClicked?.Invoke();
-       
+
         public Vector2 ReadMousePosition()
         {
             Vector2 mousePosition = _inputActions.BuildingMap.CursorPosition.ReadValue<Vector2>();
